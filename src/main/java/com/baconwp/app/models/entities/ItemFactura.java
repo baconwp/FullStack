@@ -15,7 +15,7 @@ public class ItemFactura implements Serializable {
 
     private Integer cantidad;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "producto_id")
     private Producto producto;
 
@@ -45,6 +45,14 @@ public class ItemFactura implements Serializable {
 
     public Double calculateTotal() {
         return cantidad.doubleValue() * producto.getPrecio();
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     private static final long serialVersionUID = 1L;
